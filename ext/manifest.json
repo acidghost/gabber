@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json.schemastore.org/webextension.json",
+  "manifest_version": 2,
+  "name": "Gabber",
+  "version": "1.0.0",
+  "description": "Open repository in your editor, at high BPM",
+  "permissions": [
+    "tabs"
+  ],
+  "background": {
+    "scripts": [
+      "background.js"
+    ]
+  },
+  "page_action": {
+    "default_title": "Gabber",
+    "default_popup": "popup.html",
+    "default_icon": "editor.svg",
+    "browser_style": true
+  },
+  "commands": {
+    "_execute_page_action": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+Y",
+        "mac": "Command+Shift+Y"
+      },
+      "description": "Opens the extension"
+    }
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "{fd9762f1-709a-40ed-b2ea-560a520a114b}"
+    }
+  }
+}

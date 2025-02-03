@@ -1,0 +1,16 @@
+{
+  "name": "gabber",
+  "version": "1.0.0",
+  "description": "Open repository in your editor, at high BPM",
+  "author": "acidghost",
+  "license": "GPL-3.0",
+  "scripts": {
+    "ext:build": "web-ext build --source-dir ext --artifacts-dir out --overwrite-dest",
+    "ext:run": "web-ext run --source-dir ext --artifacts-dir out --reload",
+    "ext:sign": "web-ext sign --source-dir ext --artifacts-dir out --api-key $FIREFOX_API_KEY --api-secret $FIREFOX_API_SECRET --channel unlisted"
+  },
+  "devDependencies": {
+    "@types/firefox-webext-browser": "^120.0.4",
+    "web-ext": "^8.3.0"
+  }
+}
