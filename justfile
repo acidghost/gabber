@@ -24,6 +24,13 @@ bundle: out
         git-gabber.py \
         out/Gabber.app
 
+dmg: bundle
+    hdiutil create \
+        -volname "Gabber" \
+        -srcfolder out/Gabber.app \
+        -ov -format UDZO \
+        out/Gabber.dmg
+
 install: bundle
     cp -r out/Gabber.app {{bundle_prefix}}/Applications
     install -m 755 git-gabber.py {{bin}}/git-gabber
