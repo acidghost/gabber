@@ -1,0 +1,537 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8F3B6B8C2D896B350000AFD8 /* git-gabber in Resources */ = {isa = PBXBuildFile; fileRef = 8FBD84432D85765D00B2492F /* git-gabber */; };
+		8F6D97E02D858DFF0086375D /* ArgumentParser in Frameworks */ = {isa = PBXBuildFile; productRef = 8F6D97DF2D858DFF0086375D /* ArgumentParser */; };
+		8F6D97E22D858E150086375D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F6D97E12D858E150086375D /* Foundation.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		8F3B6B892D896A330000AFD8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8FBD843B2D85765D00B2492F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8FBD84422D85765D00B2492F;
+			remoteInfo = "git-gabber";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		8FBD84412D85765D00B2492F /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		8F48B53F2D85776F000BBDFE /* .editorconfig */ = {isa = PBXFileReference; lastKnownFileType = text; path = .editorconfig; sourceTree = "<group>"; };
+		8F48B5402D85776F000BBDFE /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		8F48D8072D857A22000BBDFE /* gabber.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = gabber.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8F6D97E12D858E150086375D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		8FBD84432D85765D00B2492F /* git-gabber */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "git-gabber"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8FBD844D2D85769500B2492F /* background.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = background.js; sourceTree = "<group>"; };
+		8FBD844E2D85769500B2492F /* editor.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = editor.svg; sourceTree = "<group>"; };
+		8FBD844F2D85769500B2492F /* manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = manifest.json; sourceTree = "<group>"; };
+		8FBD84502D85769500B2492F /* popup.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = popup.html; sourceTree = "<group>"; };
+		8FBD84512D85769500B2492F /* popup.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = popup.js; sourceTree = "<group>"; };
+		8FBD84532D85769500B2492F /* git-gabber.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = "git-gabber.py"; sourceTree = "<group>"; };
+		8FBD84542D85769500B2492F /* justfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = justfile; sourceTree = "<group>"; };
+		8FBD84552D85769500B2492F /* package.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = package.json; sourceTree = "<group>"; };
+		8FBD84562D85769500B2492F /* package-lock.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "package-lock.json"; sourceTree = "<group>"; };
+		8FBD84572D85769500B2492F /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		8F6D97E42D85FEBB0086375D /* Exceptions for "gabber" folder in "gabber" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 8F48D8062D857A22000BBDFE /* gabber */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		8F48D8082D857A22000BBDFE /* gabber */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				8F6D97E42D85FEBB0086375D /* Exceptions for "gabber" folder in "gabber" target */,
+			);
+			path = gabber;
+			sourceTree = "<group>";
+		};
+		8FBD84452D85765D00B2492F /* git-gabber */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "git-gabber";
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8F48D8042D857A22000BBDFE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8FBD84402D85765D00B2492F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8F6D97E02D858DFF0086375D /* ArgumentParser in Frameworks */,
+				8F6D97E22D858E150086375D /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8F6D97D92D858C400086375D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8F6D97E12D858E150086375D /* Foundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8FBD843A2D85765D00B2492F = {
+			isa = PBXGroup;
+			children = (
+				8F48B53F2D85776F000BBDFE /* .editorconfig */,
+				8F48B5402D85776F000BBDFE /* .gitignore */,
+				8FBD84522D85769500B2492F /* ext */,
+				8FBD84532D85769500B2492F /* git-gabber.py */,
+				8FBD84542D85769500B2492F /* justfile */,
+				8FBD84552D85769500B2492F /* package.json */,
+				8FBD84562D85769500B2492F /* package-lock.json */,
+				8FBD84572D85769500B2492F /* README.md */,
+				8FBD84452D85765D00B2492F /* git-gabber */,
+				8F48D8082D857A22000BBDFE /* gabber */,
+				8F6D97D92D858C400086375D /* Frameworks */,
+				8FBD84442D85765D00B2492F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		8FBD84442D85765D00B2492F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8FBD84432D85765D00B2492F /* git-gabber */,
+				8F48D8072D857A22000BBDFE /* gabber.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8FBD84522D85769500B2492F /* ext */ = {
+			isa = PBXGroup;
+			children = (
+				8FBD844D2D85769500B2492F /* background.js */,
+				8FBD844E2D85769500B2492F /* editor.svg */,
+				8FBD844F2D85769500B2492F /* manifest.json */,
+				8FBD84502D85769500B2492F /* popup.html */,
+				8FBD84512D85769500B2492F /* popup.js */,
+			);
+			path = ext;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8F48D8062D857A22000BBDFE /* gabber */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8F48D8292D857A24000BBDFE /* Build configuration list for PBXNativeTarget "gabber" */;
+			buildPhases = (
+				8F48D8032D857A22000BBDFE /* Sources */,
+				8F48D8042D857A22000BBDFE /* Frameworks */,
+				8F48D8052D857A22000BBDFE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8F3B6B8A2D896A330000AFD8 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				8F48D8082D857A22000BBDFE /* gabber */,
+			);
+			name = gabber;
+			packageProductDependencies = (
+			);
+			productName = gabber;
+			productReference = 8F48D8072D857A22000BBDFE /* gabber.app */;
+			productType = "com.apple.product-type.application";
+		};
+		8FBD84422D85765D00B2492F /* git-gabber */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8FBD844A2D85765D00B2492F /* Build configuration list for PBXNativeTarget "git-gabber" */;
+			buildPhases = (
+				8FBD843F2D85765D00B2492F /* Sources */,
+				8FBD84402D85765D00B2492F /* Frameworks */,
+				8FBD84412D85765D00B2492F /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				8FBD84452D85765D00B2492F /* git-gabber */,
+			);
+			name = "git-gabber";
+			packageProductDependencies = (
+				8F6D97DF2D858DFF0086375D /* ArgumentParser */,
+			);
+			productName = gabber;
+			productReference = 8FBD84432D85765D00B2492F /* git-gabber */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8FBD843B2D85765D00B2492F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1620;
+				LastUpgradeCheck = 1620;
+				TargetAttributes = {
+					8F48D8062D857A22000BBDFE = {
+						CreatedOnToolsVersion = 16.2;
+					};
+					8FBD84422D85765D00B2492F = {
+						CreatedOnToolsVersion = 16.2;
+					};
+				};
+			};
+			buildConfigurationList = 8FBD843E2D85765D00B2492F /* Build configuration list for PBXProject "gabber" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 8FBD843A2D85765D00B2492F;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				8F6D97DE2D858DE80086375D /* XCRemoteSwiftPackageReference "swift-argument-parser" */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 8FBD84442D85765D00B2492F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8FBD84422D85765D00B2492F /* git-gabber */,
+				8F48D8062D857A22000BBDFE /* gabber */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8F48D8052D857A22000BBDFE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8F3B6B8C2D896B350000AFD8 /* git-gabber in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8F48D8032D857A22000BBDFE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8FBD843F2D85765D00B2492F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		8F3B6B8A2D896A330000AFD8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8FBD84422D85765D00B2492F /* git-gabber */;
+			targetProxy = 8F3B6B892D896A330000AFD8 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		8F48D82A2D857A24000BBDFE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
+				CODE_SIGN_ENTITLEMENTS = gabber/gabber.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_TEAM = 95VLY53397;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = gabber/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Gabber;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 15;
+				MARKETING_VERSION = 1.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = rip.555.gabber;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		8F48D82B2D857A24000BBDFE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
+				CODE_SIGN_ENTITLEMENTS = gabber/gabber.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_TEAM = 95VLY53397;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = gabber/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Gabber;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 15;
+				MARKETING_VERSION = 1.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = rip.555.gabber;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		8FBD84482D85765D00B2492F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				EXCLUDED_SOURCE_FILE_NAMES = node_modules;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		8FBD84492D85765D00B2492F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				EXCLUDED_SOURCE_FILE_NAMES = node_modules;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		8FBD844B2D85765D00B2492F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 95VLY53397;
+				ENABLE_HARDENED_RUNTIME = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		8FBD844C2D85765D00B2492F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 95VLY53397;
+				ENABLE_HARDENED_RUNTIME = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8F48D8292D857A24000BBDFE /* Build configuration list for PBXNativeTarget "gabber" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8F48D82A2D857A24000BBDFE /* Debug */,
+				8F48D82B2D857A24000BBDFE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8FBD843E2D85765D00B2492F /* Build configuration list for PBXProject "gabber" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8FBD84482D85765D00B2492F /* Debug */,
+				8FBD84492D85765D00B2492F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8FBD844A2D85765D00B2492F /* Build configuration list for PBXNativeTarget "git-gabber" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8FBD844B2D85765D00B2492F /* Debug */,
+				8FBD844C2D85765D00B2492F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8F6D97DE2D858DE80086375D /* XCRemoteSwiftPackageReference "swift-argument-parser" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-argument-parser.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.5.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8F6D97DF2D858DFF0086375D /* ArgumentParser */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8F6D97DE2D858DE80086375D /* XCRemoteSwiftPackageReference "swift-argument-parser" */;
+			productName = ArgumentParser;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 8FBD843B2D85765D00B2492F /* Project object */;
+}
