@@ -91,5 +91,7 @@ struct InstallView: View {
 }
 
 #Preview {
+    // swiftlint:disable force_try
     InstallView(cli: try! CLI())
+    // swiftlint:enable force_try
 }

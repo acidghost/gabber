@@ -4,13 +4,23 @@
   "description": "Open repository in your editor, at high BPM",
   "author": "acidghost",
   "license": "GPL-3.0",
+  "engines": {
+    "node": ">=22.14.0",
+    "npm": ">=10.9.0"
+  },
   "scripts": {
-    "ext:build": "web-ext build --source-dir ext --artifacts-dir out --overwrite-dest",
-    "ext:run": "web-ext run --source-dir ext --artifacts-dir out --reload",
-    "ext:sign": "web-ext sign --source-dir ext --artifacts-dir out --api-key $FIREFOX_API_KEY --api-secret $FIREFOX_API_SECRET --channel unlisted"
+    "ext:build": "web-ext build --source-dir Extension --artifacts-dir Out --overwrite-dest",
+    "ext:run": "web-ext run --source-dir Extension --artifacts-dir Out --reload",
+    "ext:sign": "web-ext sign --source-dir Extension --artifacts-dir Out --api-key $FIREFOX_API_KEY --api-secret $FIREFOX_API_SECRET --channel unlisted",
+    "lint": "eslint ."
   },
   "devDependencies": {
+    "@eslint/js": "^9.23.0",
     "@types/firefox-webext-browser": "^120.0.4",
+    "eslint": "^9.23.0",
+    "eslint-config-prettier": "^10.1.1",
+    "globals": "^16.0.0",
+    "prettier": "3.5.3",
     "web-ext": "^8.5.0"
   }
 }

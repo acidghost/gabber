@@ -10,14 +10,15 @@ struct EventsView: View {
             ScrollViewReader { proxy in
                 List(eventsStore.events) { evt in
                     switch evt {
-                    case .opening(let id, let ts, let url):
-                        eventView(id, ts, "app.fill", "opening \(url.absoluteString)")
-                    case .closed(let id, let ts, let url):
-                        eventView(id, ts, "app.dashed", "closed \(url.absoluteString)")
-                    case .error(let id, let ts, let url, let e):
+                    case .opening(let id, let date, let url):
+                        eventView(id, date, "app.fill", "opening \(url.absoluteString)")
+                    case .closed(let id, let date, let url):
+                        eventView(id, date, "app.dashed", "closed \(url.absoluteString)")
+                    case .error(let id, let date, let url, let err):
                         eventView(
-                            id, ts, "exclamationmark.triangle",
-                            "error \(url.absoluteString): \(e.localizedDescription)", isError: true)
+                            id, date, "exclamationmark.triangle",
+                            "error \(url.absoluteString): \(err.localizedDescription)",
+                            isError: true)
                     }
                 }
                 .onAppear {
@@ -35,11 +36,11 @@ struct EventsView: View {
         }
     }
 
-    func eventView(_ id: UUID, _ ts: Date, _ img: String, _ txt: String, isError: Bool = false)
+    func eventView(_ id: UUID, _ date: Date, _ img: String, _ txt: String, isError: Bool = false)
         -> some View
     {
         HStack(alignment: .center) {
-            Text(ts.formatted(date: .numeric, time: .standard))
+            Text(date.formatted(date: .numeric, time: .standard))
                 .font(.footnote)
                 .foregroundStyle(.secondary)
                 .frame(maxWidth: 100)

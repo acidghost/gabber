@@ -9,8 +9,8 @@ struct SettingsView: View {
             Spacer()
             if let cli = cliService.cli {
                 InstallView(cli: cli)
-            } else if let e = cliService.error {
-                ErrorView(error: e)
+            } else if let err = cliService.error {
+                ErrorView(error: err)
             } else {
                 ProgressView()
             }
