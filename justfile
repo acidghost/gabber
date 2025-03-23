@@ -8,7 +8,9 @@ xcodescheme := 'gabber'
 xcderived := join('DerivedData', 'gabber')
 xcarchive := join(out, 'Gabber.xcarchive')
 
-swiftlint_reporter := if env('CI', 'false') == 'true' { 'github-actions-logging' } else { 'emoji' }
+CI := env('CI', 'false')
+swiftlint_reporter := if CI == 'true' { 'github-actions-logging' } else { 'emoji' }
+codesigning := if CI == 'true' { 'NO' } else { 'YES' }
 
 _xcode config = 'Release' *args:
     xcodebuild \
@@ -18,6 +20,8 @@ _xcode config = 'Release' *args:
         -derivedDataPath {{xcderived}} \
         -skipPackagePluginValidation \
         -skipMacroValidation \
+        CODE_SIGNING_ALLOWED={{codesigning}} \
+        CODE_SIGNING_REQUIRED={{codesigning}} \
         {{args}}
 
 _deps-xcode: (_xcode 'Debug' '-resolvePackageDependencies')
