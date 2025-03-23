@@ -5,9 +5,9 @@ class GabberEvents: NSObject {
     static let shared = GabberEvents()
     let eventsPublisher = PassthroughSubject<Event, Never>()
     enum Event: Identifiable, Equatable {
-        case opening(uid: UUID = UUID(), ts: Date = Date(), url: URL)
-        case closed(uid: UUID = UUID(), ts: Date = Date(), url: URL)
-        case error(uid: UUID = UUID(), ts: Date = Date(), url: URL, error: Error)
+        case opening(uid: UUID = UUID(), date: Date = Date(), url: URL)
+        case closed(uid: UUID = UUID(), date: Date = Date(), url: URL)
+        case error(uid: UUID = UUID(), date: Date = Date(), url: URL, error: Error)
         var id: UUID {
             switch self {
             case .opening(let uid, _, _):

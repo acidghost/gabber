@@ -1,0 +1,5 @@
+line_length: 100
+disabled_rules:
+  - todo
+opening_brace:
+  ignore_multiline_function_signatures: true

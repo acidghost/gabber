@@ -1,0 +1,26 @@
+on:
+  pull_request: {}
+
+jobs:
+  ci:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - uses: actions/setup-node@cdca7365b2dadb8aad0a33bc7601856ffabcc48e # v4.3.0
+        with:
+          node-version-file: package.json
+      - name: Install tools
+        run: |
+          brew install just
+          sudo xcode-select --switch /Applications/Xcode_16.2.app
+      - name: Build apps
+        run: |
+          just build Release
+      - name: Check formatting
+        if: ${{ !cancelled() }}
+        run: |
+          just check-format
+      - name: Check linting
+        if: ${{ !cancelled() }}
+        run: |
+          just check-lint

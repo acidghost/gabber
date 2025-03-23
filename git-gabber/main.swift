@@ -91,14 +91,14 @@ enum GabberError: LocalizedError {
         switch self {
         case .noTmux:
             return "tmux not installed"
-        case .cmdRun(let e):
-            return "failed to execute command: \(e.localizedDescription)"
-        case .cmd(let out, let ec):
-            return "command failed with status \(ec):\n\(out)"
-        case .tmp(let e):
-            return "failed to create temporary directory: \(e.localizedDescription)"
-        case .wrapped(let msg, let e):
-            return "\(msg): \(e.localizedDescription)"
+        case .cmdRun(let err):
+            return "failed to execute command: \(err.localizedDescription)"
+        case .cmd(let out, let code):
+            return "command failed with status \(code):\n\(out)"
+        case .tmp(let err):
+            return "failed to create temporary directory: \(err.localizedDescription)"
+        case .wrapped(let msg, let err):
+            return "\(msg): \(err.localizedDescription)"
         }
     }
 }

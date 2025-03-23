@@ -1,47 +1,94 @@
-bundle_prefix := '~'
-prefix := '~/.local'
-bin := prefix + '/bin'
+bundle_prefix := home_directory()
+prefix := join(bundle_prefix, '.local')
+bin := join(prefix, 'bin')
 
-version := '1.0.0'
+out := 'Out'
+xcodeproj := 'gabber.xcodeproj'
+xcodescheme := 'gabber'
+xcderived := join('DerivedData', 'gabber')
+xcarchive := join(out, 'Gabber.xcarchive')
 
-out:
-    mkdir -p out
+CI := env('CI', 'false')
+swiftlint_reporter := if CI == 'true' { 'github-actions-logging' } else { 'emoji' }
+codesigning := if CI == 'true' { 'NO' } else { 'YES' }
 
-bundle: out
-    platypus \
-        --name Gabber \
-        --app-version {{version}} \
-        --bundle-identifier rip.555.Gabber \
-        --author acidghost \
-        --interpreter /usr/bin/env \
-        --interpreter-args python3 \
-        --script-args '--platypus' \
-        --uri-schemes gabber \
-        --interface-type 'None' \
-        --background \
-        --quit-after-execution \
-        --overwrite \
-        git-gabber.py \
-        out/Gabber.app
+_xcode config = 'Release' *args:
+    xcodebuild \
+        -project {{xcodeproj}} \
+        -scheme {{xcodescheme}} \
+        -configuration {{config}} \
+        -derivedDataPath {{xcderived}} \
+        -skipPackagePluginValidation \
+        -skipMacroValidation \
+        CODE_SIGNING_ALLOWED={{codesigning}} \
+        CODE_SIGNING_REQUIRED={{codesigning}} \
+        {{args}}
 
-dmg: bundle
+_deps-xcode: (_xcode 'Debug' '-resolvePackageDependencies')
+
+_deps-npm:
+    npm install
+
+# Check formatting and linting
+check: check-format check-lint
+
+# Check linting
+check-lint: check-lint-xcode check-lint-npm
+
+# Check linting for XCode project
+check-lint-xcode: _deps-xcode
+    ./{{xcderived}}/SourcePackages/artifacts/swiftlintplugins/SwiftLintBinary/SwiftLintBinary.artifactbundle/swiftlint-*-macos/bin/swiftlint \
+        --strict \
+        --reporter {{swiftlint_reporter}} \
+        gabber git-gabber
+
+# Check linting for browser extension
+check-lint-npm: _deps-npm
+    npm run lint
+
+# Check formatting
+check-format: check-format-swift check-format-other
+
+# Check formatting for Swift files
+check-format-swift:
+    swift format lint --recursive gabber git-gabber
+
+# Check formatting for other files
+check-format-other: _deps-npm
+    npx prettier --check .
+
+# Build the app
+build config = 'Release': (_xcode config)
+
+# Create XCode archive
+archive config = 'Release': (_xcode config '-archivePath' xcarchive 'archive')
+
+# Create a DMG from the archive
+dmg: archive
     hdiutil create \
         -volname "Gabber" \
-        -srcfolder out/Gabber.app \
+        -srcfolder {{xcarchive}}/Products/Applications/Gabber.app \
         -ov -format UDZO \
-        out/Gabber.dmg
+        {{out}}/Gabber.dmg
 
-install: bundle
-    cp -r out/Gabber.app {{bundle_prefix}}/Applications
-    install -m 755 git-gabber.py {{bin}}/git-gabber
+# Install the app and git-gabber
+install: archive
+    cp -r {{xcarchive}}/Products/Applications/Gabber.app {{bundle_prefix}}/Applications
+    install -m 755 {{xcarchive}}/Products/usr/local/bin/git-gabber {{bin}}/git-gabber
 
-extension: out
+_out:
+    mkdir -p {{out}}
+
+# Build the extension
+extension: _out
     npm run ext:build
 
-sign-extension: out
+# Sign the extension
+sign-extension: _out
     FIREFOX_API_KEY=$(cat .api-key) \
     FIREFOX_API_SECRET=$(cat .api-secret) \
         npm run ext:sign
 
+# Clean up
 clean:
-    rm -rf out
+    rm -rf {{out}}

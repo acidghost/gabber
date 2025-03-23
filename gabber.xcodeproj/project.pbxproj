@@ -35,6 +35,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		8F2F74182D900E3F00C325F6 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.yaml; };
+		8F2F74192D9012AD00C325F6 /* .swift-format */ = {isa = PBXFileReference; lastKnownFileType = text; path = ".swift-format"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.json; };
 		8F48B53F2D85776F000BBDFE /* .editorconfig */ = {isa = PBXFileReference; lastKnownFileType = text; path = .editorconfig; sourceTree = "<group>"; };
 		8F48B5402D85776F000BBDFE /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		8F48D8072D857A22000BBDFE /* gabber.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = gabber.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -45,7 +47,6 @@
 		8FBD844F2D85769500B2492F /* manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = manifest.json; sourceTree = "<group>"; };
 		8FBD84502D85769500B2492F /* popup.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = popup.html; sourceTree = "<group>"; };
 		8FBD84512D85769500B2492F /* popup.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = popup.js; sourceTree = "<group>"; };
-		8FBD84532D85769500B2492F /* git-gabber.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = "git-gabber.py"; sourceTree = "<group>"; };
 		8FBD84542D85769500B2492F /* justfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = justfile; sourceTree = "<group>"; };
 		8FBD84552D85769500B2492F /* package.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = package.json; sourceTree = "<group>"; };
 		8FBD84562D85769500B2492F /* package-lock.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "package-lock.json"; sourceTree = "<group>"; };
@@ -109,10 +110,11 @@
 		8FBD843A2D85765D00B2492F = {
 			isa = PBXGroup;
 			children = (
+				8F2F74192D9012AD00C325F6 /* .swift-format */,
+				8F2F74182D900E3F00C325F6 /* .swiftlint.yml */,
 				8F48B53F2D85776F000BBDFE /* .editorconfig */,
 				8F48B5402D85776F000BBDFE /* .gitignore */,
 				8FBD84522D85769500B2492F /* ext */,
-				8FBD84532D85769500B2492F /* git-gabber.py */,
 				8FBD84542D85769500B2492F /* justfile */,
 				8FBD84552D85769500B2492F /* package.json */,
 				8FBD84562D85769500B2492F /* package-lock.json */,
@@ -159,6 +161,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				8F49216B2D9001DF00D2F2B4 /* PBXTargetDependency */,
 				8F3B6B8A2D896A330000AFD8 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
@@ -182,6 +185,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				8F49216D2D9001ED00D2F2B4 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				8FBD84452D85765D00B2492F /* git-gabber */,
@@ -223,6 +227,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				8F6D97DE2D858DE80086375D /* XCRemoteSwiftPackageReference "swift-argument-parser" */,
+				8F4921692D8FFFBA00D2F2B4 /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 8FBD84442D85765D00B2492F /* Products */;
@@ -269,6 +274,14 @@
 			target = 8FBD84422D85765D00B2492F /* git-gabber */;
 			targetProxy = 8F3B6B892D896A330000AFD8 /* PBXContainerItemProxy */;
 		};
+		8F49216B2D9001DF00D2F2B4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 8F49216A2D9001DF00D2F2B4 /* SwiftLintBuildToolPlugin */;
+		};
+		8F49216D2D9001ED00D2F2B4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 8F49216C2D9001ED00D2F2B4 /* SwiftLintBuildToolPlugin */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
@@ -282,6 +295,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 95VLY53397;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -314,6 +328,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 95VLY53397;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -370,6 +385,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -434,6 +450,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -461,6 +478,7 @@
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 95VLY53397;
 				ENABLE_HARDENED_RUNTIME = YES;
 				MACOSX_DEPLOYMENT_TARGET = 13;
@@ -474,6 +492,7 @@
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 95VLY53397;
 				ENABLE_HARDENED_RUNTIME = YES;
 				MACOSX_DEPLOYMENT_TARGET = 13;
@@ -515,6 +534,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		8F4921692D8FFFBA00D2F2B4 /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SimplyDanny/SwiftLintPlugins";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.58.2;
+			};
+		};
 		8F6D97DE2D858DE80086375D /* XCRemoteSwiftPackageReference "swift-argument-parser" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/apple/swift-argument-parser.git";
@@ -526,6 +553,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		8F49216A2D9001DF00D2F2B4 /* SwiftLintBuildToolPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8F4921692D8FFFBA00D2F2B4 /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */;
+			productName = "plugin:SwiftLintBuildToolPlugin";
+		};
+		8F49216C2D9001ED00D2F2B4 /* SwiftLintBuildToolPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8F4921692D8FFFBA00D2F2B4 /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */;
+			productName = "plugin:SwiftLintBuildToolPlugin";
+		};
 		8F6D97DF2D858DFF0086375D /* ArgumentParser */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 8F6D97DE2D858DE80086375D /* XCRemoteSwiftPackageReference "swift-argument-parser" */;
