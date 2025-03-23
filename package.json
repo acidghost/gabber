@@ -11,6 +11,6 @@
   },
   "devDependencies": {
     "@types/firefox-webext-browser": "^120.0.4",
-    "web-ext": "^8.3.0"
+    "web-ext": "^8.5.0"
   }
 }
