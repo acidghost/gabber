@@ -12,9 +12,8 @@ jobs:
       - name: Install tools
         run: |
           brew install just
-          xcode-select --switch /Applications/Xcode_16.2.app
+          sudo xcode-select --switch /Applications/Xcode_16.2.app
       - name: Build apps
-        if: ${{ !cancelled() }}
         run: |
           just build Release
       - name: Check formatting
