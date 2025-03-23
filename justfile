@@ -16,6 +16,8 @@ _xcode config = 'Release' *args:
         -scheme {{xcodescheme}} \
         -configuration {{config}} \
         -derivedDataPath {{xcderived}} \
+        -skipPackagePluginValidation \
+        -skipMacroValidation \
         {{args}}
 
 _deps-xcode: (_xcode 'Debug' '-resolvePackageDependencies')
