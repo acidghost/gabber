@@ -12,14 +12,18 @@
     "ext:build": "web-ext build --source-dir Extension --artifacts-dir Out --overwrite-dest",
     "ext:run": "web-ext run --source-dir Extension --artifacts-dir Out --reload",
     "ext:sign": "web-ext sign --source-dir Extension --artifacts-dir Out --api-key $FIREFOX_API_KEY --api-secret $FIREFOX_API_SECRET --channel unlisted",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "test": "cd Extension && jasmine-browser-runner runSpecs"
   },
   "devDependencies": {
     "@eslint/js": "^9.23.0",
     "@types/firefox-webext-browser": "^120.0.4",
+    "@types/jasmine": "^5.1.7",
     "eslint": "^9.23.0",
     "eslint-config-prettier": "^10.1.1",
     "globals": "^16.0.0",
+    "jasmine-browser-runner": "^3.0.0",
+    "jasmine-core": "^5.6.0",
     "prettier": "3.5.3",
     "web-ext": "^8.5.0"
   }

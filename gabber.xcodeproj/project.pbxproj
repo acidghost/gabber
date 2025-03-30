@@ -41,12 +41,17 @@
 		8F48B5402D85776F000BBDFE /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		8F48D8072D857A22000BBDFE /* gabber.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = gabber.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F6D97E12D858E150086375D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		8FBCB8702D999B9B005884B5 /* jasmine-browser.mjs */ = {isa = PBXFileReference; lastKnownFileType = text; path = "jasmine-browser.mjs"; sourceTree = "<group>"; };
+		8FBCB8722D999B9B005884B5 /* gabber_spec.mjs */ = {isa = PBXFileReference; lastKnownFileType = text; path = gabber_spec.mjs; sourceTree = "<group>"; };
+		8FBCB8742D999B9B005884B5 /* background.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = background.js; sourceTree = "<group>"; };
+		8FBCB8752D999B9B005884B5 /* editor.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = editor.svg; sourceTree = "<group>"; };
+		8FBCB8762D999B9B005884B5 /* gabber.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = gabber.js; sourceTree = "<group>"; };
+		8FBCB8772D999B9B005884B5 /* manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = manifest.json; sourceTree = "<group>"; };
+		8FBCB8782D999B9B005884B5 /* popup.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = popup.html; sourceTree = "<group>"; };
+		8FBCB8792D999B9B005884B5 /* popup.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = popup.js; sourceTree = "<group>"; };
+		8FBCB87C2D999BB1005884B5 /* eslint.config.mjs */ = {isa = PBXFileReference; lastKnownFileType = text; path = eslint.config.mjs; sourceTree = "<group>"; };
+		8FBCB87D2D999BB1005884B5 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		8FBD84432D85765D00B2492F /* git-gabber */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "git-gabber"; sourceTree = BUILT_PRODUCTS_DIR; };
-		8FBD844D2D85769500B2492F /* background.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = background.js; sourceTree = "<group>"; };
-		8FBD844E2D85769500B2492F /* editor.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = editor.svg; sourceTree = "<group>"; };
-		8FBD844F2D85769500B2492F /* manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = manifest.json; sourceTree = "<group>"; };
-		8FBD84502D85769500B2492F /* popup.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = popup.html; sourceTree = "<group>"; };
-		8FBD84512D85769500B2492F /* popup.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = popup.js; sourceTree = "<group>"; };
 		8FBD84542D85769500B2492F /* justfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = justfile; sourceTree = "<group>"; };
 		8FBD84552D85769500B2492F /* package.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = package.json; sourceTree = "<group>"; };
 		8FBD84562D85769500B2492F /* package-lock.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "package-lock.json"; sourceTree = "<group>"; };
@@ -107,21 +112,62 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		8FBCB8712D999B9B005884B5 /* support */ = {
+			isa = PBXGroup;
+			children = (
+				8FBCB8702D999B9B005884B5 /* jasmine-browser.mjs */,
+			);
+			path = support;
+			sourceTree = "<group>";
+		};
+		8FBCB8732D999B9B005884B5 /* spec */ = {
+			isa = PBXGroup;
+			children = (
+				8FBCB8712D999B9B005884B5 /* support */,
+				8FBCB8722D999B9B005884B5 /* gabber_spec.mjs */,
+			);
+			path = spec;
+			sourceTree = "<group>";
+		};
+		8FBCB87A2D999B9B005884B5 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				8FBCB8742D999B9B005884B5 /* background.js */,
+				8FBCB8752D999B9B005884B5 /* editor.svg */,
+				8FBCB8762D999B9B005884B5 /* gabber.js */,
+				8FBCB8772D999B9B005884B5 /* manifest.json */,
+				8FBCB8782D999B9B005884B5 /* popup.html */,
+				8FBCB8792D999B9B005884B5 /* popup.js */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		8FBCB87B2D999B9B005884B5 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				8FBCB8732D999B9B005884B5 /* spec */,
+				8FBCB87A2D999B9B005884B5 /* src */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		8FBD843A2D85765D00B2492F = {
 			isa = PBXGroup;
 			children = (
-				8F2F74192D9012AD00C325F6 /* .swift-format */,
-				8F2F74182D900E3F00C325F6 /* .swiftlint.yml */,
 				8F48B53F2D85776F000BBDFE /* .editorconfig */,
 				8F48B5402D85776F000BBDFE /* .gitignore */,
-				8FBD84522D85769500B2492F /* ext */,
+				8F2F74192D9012AD00C325F6 /* .swift-format */,
 				8FBD84542D85769500B2492F /* justfile */,
-				8FBD84552D85769500B2492F /* package.json */,
+				8FBCB87D2D999BB1005884B5 /* LICENSE */,
 				8FBD84562D85769500B2492F /* package-lock.json */,
+				8FBD84552D85769500B2492F /* package.json */,
 				8FBD84572D85769500B2492F /* README.md */,
-				8FBD84452D85765D00B2492F /* git-gabber */,
-				8F48D8082D857A22000BBDFE /* gabber */,
+				8FBCB87C2D999BB1005884B5 /* eslint.config.mjs */,
+				8F2F74182D900E3F00C325F6 /* .swiftlint.yml */,
+				8FBCB87B2D999B9B005884B5 /* Extension */,
 				8F6D97D92D858C400086375D /* Frameworks */,
+				8F48D8082D857A22000BBDFE /* gabber */,
+				8FBD84452D85765D00B2492F /* git-gabber */,
 				8FBD84442D85765D00B2492F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -133,18 +179,6 @@
 				8F48D8072D857A22000BBDFE /* gabber.app */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		8FBD84522D85769500B2492F /* ext */ = {
-			isa = PBXGroup;
-			children = (
-				8FBD844D2D85769500B2492F /* background.js */,
-				8FBD844E2D85769500B2492F /* editor.svg */,
-				8FBD844F2D85769500B2492F /* manifest.json */,
-				8FBD84502D85769500B2492F /* popup.html */,
-				8FBD84512D85769500B2492F /* popup.js */,
-			);
-			path = ext;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

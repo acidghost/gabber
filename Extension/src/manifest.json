@@ -10,7 +10,8 @@
   "background": {
     "scripts": [
       "background.js"
-    ]
+    ],
+    "type": "module"
   },
   "page_action": {
     "default_title": "Gabber",

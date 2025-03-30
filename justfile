@@ -57,6 +57,10 @@ check-format-swift:
 check-format-other: _deps-npm
     npx prettier --check .
 
+# Run tests for extension
+test-extension:
+    npm test
+
 # Build the app
 build config = 'Release': (_xcode config)
 
