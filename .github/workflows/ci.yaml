@@ -10,6 +10,7 @@ jobs:
         with:
           node-version-file: package.json
           cache: npm
+          cache-dependency-path: package-lock.json
       - name: Install tools
         run: |
           brew install just
