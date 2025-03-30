@@ -9,9 +9,12 @@ jobs:
       - uses: actions/setup-node@cdca7365b2dadb8aad0a33bc7601856ffabcc48e # v4.3.0
         with:
           node-version-file: package.json
+          cache: npm
+          cache-dependency-path: package-lock.json
       - name: Install tools
         run: |
           brew install just
+          brew install --cask firefox@esr
           sudo xcode-select --switch /Applications/Xcode_16.2.app
       - name: Build apps
         run: |
@@ -24,3 +27,7 @@ jobs:
         if: ${{ !cancelled() }}
         run: |
           just check-lint
+      - name: Test
+        if: ${{ !cancelled() }}
+        run: |
+          just test-extension

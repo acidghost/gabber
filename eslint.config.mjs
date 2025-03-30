@@ -10,12 +10,21 @@ export default defineConfig([
     extends: ["js/recommended"],
   },
   {
-    files: ["Extension/**/*.js"],
+    files: ["Extension/src/**/*.js"],
     plugins: { js },
     extends: ["js/recommended"],
     languageOptions: {
-      sourceType: "script",
+      sourceType: "module",
       globals: globals.browser,
+    },
+  },
+  {
+    files: ["Extension/spec/**/*.mjs"],
+    plugins: { js },
+    extends: ["js/recommended"],
+    languageOptions: {
+      sourceType: "module",
+      globals: globals.jasmine,
     },
   },
   eslintConfigPrettier,
