@@ -14,6 +14,7 @@ struct GabberApp: App {
         if let cli = cliService.cli {
             appDelegate.cli = cli
         }
+        appDelegate.eventsStore = eventsStore
     }
 
     var body: some Scene {
@@ -76,6 +77,7 @@ struct GabberApp: App {
 
 class AppDelegate: NSObject, NSApplicationDelegate {
     var cli: CLI?
+    var eventsStore: EventsStore!
 
     func applicationDidFinishLaunching(_ notification: Notification) {
         print("Application did finish launching")
@@ -88,13 +90,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             print("CLI not yet initialized")
             return
         }
-        GabberEvents.shared.append(.opening(url: url))
-        Task.detached(priority: .background) {
+        eventsStore.events.append(.opening(url: url))
+        Task {
             do {
-                try cli.run(url)
-                GabberEvents.shared.append(.closed(url: url))
+                try await cli.run(url)
+                eventsStore.events.append(.closed(url: url))
             } catch {
-                GabberEvents.shared.append(.error(url: url, error: error))
+                eventsStore.events.append(.error(url: url, error: error))
             }
         }
     }

@@ -9,7 +9,7 @@ let brewenv = """
 
 @main
 struct Gabber: ParsableCommand {
-    static var configuration = CommandConfiguration(
+    static let configuration = CommandConfiguration(
         commandName: "git-gabber",
         abstract: "Repository 2 editor, at high BPM"
     )

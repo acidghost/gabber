@@ -23,12 +23,12 @@ struct EventsView: View {
                 }
                 .onAppear {
                     guard let lastEvent = eventsStore.events.last else { return }
-                    proxy.scrollTo(lastEvent.id)
+                    proxy.scrollTo(lastEvent.id, anchor: .bottom)
                 }
                 .onChange(of: eventsStore.events) {
                     guard let lastEvent = eventsStore.events.last else { return }
                     withAnimation {
-                        proxy.scrollTo(lastEvent.id)
+                        proxy.scrollTo(lastEvent.id, anchor: .bottom)
                     }
                 }
                 .frame(width: 600, height: 200)
@@ -60,18 +60,19 @@ struct EventsView: View {
 }
 
 #Preview {
+    let eventsStore = EventsStore()
     EventsView()
-        .environmentObject(EventsStore())
+        .environmentObject(eventsStore)
         .task {
-            GabberEvents.shared.append(.opening(url: URL(filePath: "testing")))
-            GabberEvents.shared.append(.closed(url: URL(filePath: "testing")))
-            GabberEvents.shared.append(.opening(url: URL(filePath: "testing")))
-            GabberEvents.shared.append(.closed(url: URL(filePath: "testing")))
-            GabberEvents.shared.append(.opening(url: URL(filePath: "testing")))
-            GabberEvents.shared.append(.closed(url: URL(filePath: "testing")))
-            GabberEvents.shared.append(.opening(url: URL(filePath: "testing")))
-            GabberEvents.shared.append(.closed(url: URL(filePath: "testing")))
-            GabberEvents.shared.append(
+            eventsStore.events.append(.opening(url: URL(filePath: "testing")))
+            eventsStore.events.append(.closed(url: URL(filePath: "testing")))
+            try? await Task.sleep(for: .seconds(1))
+            eventsStore.events.append(.opening(url: URL(filePath: "testing")))
+            eventsStore.events.append(.closed(url: URL(filePath: "testing")))
+            eventsStore.events.append(.opening(url: URL(filePath: "testing")))
+            eventsStore.events.append(.closed(url: URL(filePath: "testing")))
+            try? await Task.sleep(for: .seconds(1))
+            eventsStore.events.append(
                 .error(
                     url: URL(filePath: "testing"),
                     error: CLIError.execProcess("asd\ndsa\nqwe", CLIError.notBundled)))
