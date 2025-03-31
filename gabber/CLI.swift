@@ -66,7 +66,7 @@ class CLI {
     }
 
     @discardableResult
-    func run(_ gabberURL: URL) throws(CLIError) -> String {
+    func run(_ gabberURL: URL) async throws -> String {
         let task = Process()
         let pipe = Pipe()
 
@@ -90,14 +90,15 @@ class CLI {
             throw CLIError.execProcess("Executing CLI", error)
         }
 
-        task.waitUntilExit()
-
-        let data = pipe.fileHandleForReading.readDataToEndOfFile()
-        let out = String(data: data, encoding: .utf8) ?? ""
-        guard task.terminationStatus == 0 else {
-            throw CLIError.nonZero(task.terminationStatus, out)
-        }
-        return out
+        return try await Task.detached(priority: .background) {
+            task.waitUntilExit()
+            let data = pipe.fileHandleForReading.readDataToEndOfFile()
+            let out = String(data: data, encoding: .utf8) ?? ""
+            guard task.terminationStatus == 0 else {
+                throw CLIError.nonZero(task.terminationStatus, out)
+            }
+            return out
+        }.value
     }
 }
 
