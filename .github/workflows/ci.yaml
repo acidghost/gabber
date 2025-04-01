@@ -27,7 +27,7 @@ jobs:
       - uses: actions/setup-node@cdca7365b2dadb8aad0a33bc7601856ffabcc48e # v4.3.0
         with:
           node-version-file: package.json
-      - name: Setup tools
+      - name: Setup build tools
         run: |
           brew install just
           sudo xcode-select --switch /Applications/Xcode_16.2.app
@@ -46,7 +46,7 @@ jobs:
       - uses: actions/setup-node@cdca7365b2dadb8aad0a33bc7601856ffabcc48e # v4.3.0
         with:
           node-version-file: package.json
-      - name: Install tools
+      - name: Setup build tools
         run: |
           brew install just
           sudo xcode-select --switch /Applications/Xcode_16.2.app
@@ -65,7 +65,7 @@ jobs:
       - uses: actions/setup-node@cdca7365b2dadb8aad0a33bc7601856ffabcc48e # v4.3.0
         with:
           node-version-file: package.json
-      - name: Install just
+      - name: Setup build tools
         run: |
           brew install just
           brew install --cask firefox@esr
