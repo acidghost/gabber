@@ -8,7 +8,7 @@ xcodescheme := 'gabber'
 xcderived := join('DerivedData', 'gabber')
 xcarchive := join(out, 'Gabber.xcarchive')
 
-CI := env('CI', 'false')
+CI := env('GABBER_CI', 'false')
 swiftlint_reporter := if CI == 'true' { 'github-actions-logging' } else { 'emoji' }
 codesigning := if CI == 'true' { 'NO' } else { 'YES' }
 
@@ -26,9 +26,6 @@ _xcode config = 'Release' *args:
 
 _deps-xcode: (_xcode 'Debug' '-resolvePackageDependencies')
 
-_deps-npm:
-    npm install
-
 # Check formatting and linting
 check: check-format check-lint
 
@@ -43,7 +40,7 @@ check-lint-xcode: _deps-xcode
         gabber git-gabber
 
 # Check linting for browser extension
-check-lint-npm: _deps-npm
+check-lint-npm:
     npm run lint
 
 # Check formatting
@@ -54,7 +51,7 @@ check-format-swift:
     swift format lint --recursive gabber git-gabber
 
 # Check formatting for other files
-check-format-other: _deps-npm
+check-format-other:
     npx prettier --check .
 
 # Run tests for extension

@@ -1,33 +1,76 @@
 on:
   pull_request: {}
+  push:
+    branches:
+      - main
 
 jobs:
-  ci:
+  build:
     runs-on: macos-latest
+    env:
+      GABBER_CI: "true"
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - name: Setup build tools
+        run: |
+          brew install just
+          sudo xcode-select --switch /Applications/Xcode_16.2.app
+      - name: Build apps
+        run: just build Release
+
+  format:
+    runs-on: macos-latest
+    env:
+      GABBER_CI: "true"
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
       - uses: actions/setup-node@cdca7365b2dadb8aad0a33bc7601856ffabcc48e # v4.3.0
         with:
           node-version-file: package.json
-          cache: npm
-          cache-dependency-path: package-lock.json
-      - name: Install tools
+      - name: Setup build tools
+        run: |
+          brew install just
+          sudo xcode-select --switch /Applications/Xcode_16.2.app
+      - name: Setup npm dependencies
+        run: |
+          npm ci
+      - name: Check formatting
+        run: just check-format
+
+  lint:
+    runs-on: macos-latest
+    env:
+      GABBER_CI: "true"
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - uses: actions/setup-node@cdca7365b2dadb8aad0a33bc7601856ffabcc48e # v4.3.0
+        with:
+          node-version-file: package.json
+      - name: Setup build tools
+        run: |
+          brew install just
+          sudo xcode-select --switch /Applications/Xcode_16.2.app
+      - name: Setup npm dependencies
+        run: |
+          npm ci
+      - name: Check linting
+        run: just check-lint
+
+  test:
+    runs-on: macos-latest
+    env:
+      GABBER_CI: "true"
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - uses: actions/setup-node@cdca7365b2dadb8aad0a33bc7601856ffabcc48e # v4.3.0
+        with:
+          node-version-file: package.json
+      - name: Setup build tools
         run: |
           brew install just
           brew install --cask firefox@esr
-          sudo xcode-select --switch /Applications/Xcode_16.2.app
-      - name: Build apps
+      - name: Setup npm dependencies
         run: |
-          just build Release
-      - name: Check formatting
-        if: ${{ !cancelled() }}
-        run: |
-          just check-format
-      - name: Check linting
-        if: ${{ !cancelled() }}
-        run: |
-          just check-lint
-      - name: Test
-        if: ${{ !cancelled() }}
-        run: |
-          just test-extension
+          npm ci
+      - name: Test extension
+        run: just test-extension
