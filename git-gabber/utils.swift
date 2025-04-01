@@ -30,7 +30,7 @@ class TemporaryDirectory {
 }
 
 @discardableResult
-func cmd(_ cmd: String, _ args: [String]) throws -> String {
+func cmd(_ cmd: String, _ args: [String]) throws(GabberError) -> String {
     let task = Process()
     let pipe = Pipe()
 
@@ -57,6 +57,6 @@ func cmd(_ cmd: String, _ args: [String]) throws -> String {
 }
 
 @discardableResult
-func shell(_ command: String) throws -> String {
+func shell(_ command: String) throws(GabberError) -> String {
     try cmd("/bin/sh", ["-c", command])
 }
