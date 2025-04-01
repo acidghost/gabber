@@ -1,11 +1,7 @@
 import ArgumentParser
 import Foundation
 
-let brewenv = """
-    if [ -f /opt/homebrew/bin/brew ]; then
-        eval "$(/opt/homebrew/bin/brew shellenv)"
-    fi
-    """
+let editorVar = "$EDITOR"
 
 @main
 struct Gabber: ParsableCommand {
@@ -14,37 +10,100 @@ struct Gabber: ParsableCommand {
         abstract: "Repository 2 editor, at high BPM"
     )
 
-    @Option(help: "Path to git binary")
-    var git: String = "/usr/bin/git"
-
     @Option(help: "Shell environment file to source")
     var env: String = "~/.shell/env.sh"
 
     @Option(help: "Editor to open the repository in")
-    var editor: String = ProcessInfo.processInfo.environment["EDITOR"] ?? "$EDITOR"
+    var editor: String = ProcessInfo.processInfo.environment["EDITOR"] ?? editorVar
 
     @Argument(help: "URL of the repository")
     var url: GitURL
 
+    private var sourcedEnv: String {
+        """
+        if [ -f /opt/homebrew/bin/brew ]; then
+            eval "$(/opt/homebrew/bin/brew shellenv)"
+        fi
+        source \(env)
+        """
+    }
+
     func run() throws {
-        let tmux: String
-        do {
-            tmux = try shell("\(brewenv)\nwhich tmux")
-                .trimmingCharacters(in: .whitespacesAndNewlines)
-        } catch {
-            throw GabberError.wrapped("looking up tmux", error)
+        let editor = try resolveEditor()
+
+        var neededPrograms = ["git", editor]
+        if editor != "code" {
+            neededPrograms.append("tmux")
         }
 
-        if tmux.isEmpty {
-            throw GabberError.noTmux
+        let programs = try findPrograms(neededPrograms)
+        guard let git = programs["git"] else {
+            throw GabberError.programsNotFound(["git"])
+        }
+        guard let editorPath = programs[editor] else {
+            throw GabberError.programsNotFound([editor])
         }
 
         let tmpdir = try TemporaryDirectory()
         defer { tmpdir.cleanup() }
 
-        var dst = URL(filePath: tmpdir.path)
-        dst.append(components: url.repository)
+        let dst = URL(filePath: tmpdir.path).appending(components: url.repository)
+        try clone(with: git, into: dst)
 
+        let editorCmd = editorCmd(for: editor, withPath: editorPath, dst)
+        print("running editor command: \(editorCmd)")
+
+        if editor == "code" {
+            try shell(editorCmd)
+        } else {
+            guard let tmux = programs["tmux"] else {
+                throw GabberError.programsNotFound(["tmux"])
+            }
+            try spawn(tmux: tmux, cmd: editorCmd, in: dst)
+        }
+    }
+
+    func resolveEditor() throws(GabberError) -> String {
+        if editor == editorVar {
+            try shell(sourcedEnv + "\necho \(editor)")
+                .trimmingCharacters(in: .whitespacesAndNewlines)
+        } else {
+            editor
+        }
+    }
+
+    func findPrograms(_ programs: [String]) throws(GabberError) -> [String: String] {
+        var script = sourcedEnv + "\n"
+        var searchedPrograms: [String: String?] = [:]
+        for program in programs {
+            script += "printf '%s\n' \"$(which \(program))\"\n"
+            searchedPrograms.updateValue(nil, forKey: program)
+        }
+
+        let out = try shell(script)
+        for foundProgram in out.split(separator: "\n") where !foundProgram.isEmpty {
+            let foundProgram = String(foundProgram).trimmingCharacters(in: .whitespacesAndNewlines)
+            guard !foundProgram.isEmpty, let parsed = URL(string: foundProgram) else { continue }
+            searchedPrograms[parsed.lastPathComponent] = foundProgram
+        }
+
+        var foundPrograms: [String: String] = [:]
+        var notFound: [String] = []
+        for (program, maybePath) in searchedPrograms {
+            if let path = maybePath {
+                foundPrograms[program] = path
+            } else {
+                notFound.append(program)
+            }
+        }
+
+        guard notFound.isEmpty else {
+            throw GabberError.programsNotFound(notFound)
+        }
+        return foundPrograms
+    }
+
+    func clone(with git: String, into dst: URL) throws(GabberError) {
         do {
             try cmd(git, ["clone", url.cloneURL, dst.path()])
         } catch {
@@ -58,19 +117,42 @@ struct Gabber: ParsableCommand {
                 throw GabberError.wrapped("checking out branch/commit", error)
             }
         }
+    }
 
+    func editorCmd(for editor: String, withPath editorPath: String, _ dst: URL) -> String {
+        var cmd: String
+        switch editor {
+        case "vim", "nvim":
+            cmd = "cd \(dst.path()) && \(editorPath)"
+            if let filePath = url.filePath {
+                cmd += " \(filePath)"
+                if let line = url.line {
+                    cmd += " +\(line)"
+                }
+            } else {
+                cmd += " ."
+            }
+        case "code":
+            cmd = "\(editorPath) --wait --new-window"
+            if let filePath = url.filePath {
+                cmd += " --goto \(dst.appending(components: filePath).path()):\(url.line ?? 1)"
+            }
+            cmd += " \(dst.path())"
+        default:
+            cmd = "cd \(dst.path()) && \(editorPath) \(url.filePath ?? ".")"
+        }
+        return cmd
+    }
+
+    func spawn(tmux: String, cmd editorCmd: String, in dst: URL) throws {
         // TODO: make this unique to avoid strange race conditions in tmux
         let signal = "gabber-\(url.repository)"
-
-        let editorCmd = editorCmd(dst)
-        print("running editor command: \(editorCmd)")
 
         let neww: String
         do {
             neww = try shell(
                 """
-                \(brewenv)
-                source \(env)
+                \(sourcedEnv)
                 \(tmux) -L default new-window -Pd -n \(signal) -c \(dst) \
                     '\(editorCmd); \(tmux) wait -S \(signal)'
                 """
@@ -87,18 +169,5 @@ struct Gabber: ParsableCommand {
         } catch {
             throw GabberError.wrapped("waiting for editor to exit", error)
         }
-    }
-
-    func editorCmd(_ dst: URL) -> String {
-        var cmd = "cd \(dst.path()) && \(editor)"
-        if let filePath = url.filePath {
-            cmd += " \(filePath)"
-            if let line = url.line {
-                cmd += " +\(line)"
-            }
-        } else {
-            cmd += " ."
-        }
-        return cmd
     }
 }

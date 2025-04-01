@@ -1,7 +1,7 @@
 import Foundation
 
 enum GabberError: LocalizedError {
-    case noTmux
+    case programsNotFound([String])
     case cmdRun(Error)
     case cmd(String, Int32)
     case tmp(Error)
@@ -9,8 +9,12 @@ enum GabberError: LocalizedError {
 
     var errorDescription: String? {
         switch self {
-        case .noTmux:
-            return "tmux not installed"
+        case .programsNotFound(let programs):
+            if programs.count == 1 {
+                return "program '\(programs[0])' not found"
+            } else {
+                return "programs '\(programs.joined(separator: "', '"))' not found"
+            }
         case .cmdRun(let err):
             return "failed to execute command: \(err.localizedDescription)"
         case .cmd(let out, let code):
