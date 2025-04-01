@@ -46,13 +46,24 @@ struct Gabber: ParsableCommand {
         dst.append(components: url.repository)
 
         do {
-            try cmd(git, ["clone", url.url, dst.path()])
+            try cmd(git, ["clone", url.cloneURL, dst.path()])
         } catch {
             throw GabberError.wrapped("cloning repository", error)
         }
 
+        if let branchOrCommit = url.branch ?? url.commit {
+            do {
+                try cmd(git, ["-C", dst.path(), "checkout", branchOrCommit])
+            } catch {
+                throw GabberError.wrapped("checking out branch/commit", error)
+            }
+        }
+
         // TODO: make this unique to avoid strange race conditions in tmux
         let signal = "gabber-\(url.repository)"
+
+        let editorCmd = editorCmd(dst)
+        print("running editor command: \(editorCmd)")
 
         let neww: String
         do {
@@ -61,7 +72,7 @@ struct Gabber: ParsableCommand {
                 \(brewenv)
                 source \(env)
                 \(tmux) -L default new-window -Pd -n \(signal) -c \(dst) \
-                    '\(editor) \(dst); \(tmux) wait -S \(signal)'
+                    '\(editorCmd); \(tmux) wait -S \(signal)'
                 """
             )
             .trimmingCharacters(in: .whitespacesAndNewlines)
@@ -76,5 +87,18 @@ struct Gabber: ParsableCommand {
         } catch {
             throw GabberError.wrapped("waiting for editor to exit", error)
         }
+    }
+
+    func editorCmd(_ dst: URL) -> String {
+        var cmd = "cd \(dst.path()) && \(editor)"
+        if let filePath = url.filePath {
+            cmd += " \(filePath)"
+            if let line = url.line {
+                cmd += " +\(line)"
+            }
+        } else {
+            cmd += " ."
+        }
+        return cmd
     }
 }
