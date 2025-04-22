@@ -16,7 +16,7 @@
     "test": "cd Extension && jasmine-browser-runner runSpecs"
   },
   "devDependencies": {
-    "@eslint/js": "^9.24.0",
+    "@eslint/js": "^9.25.1",
     "@types/firefox-webext-browser": "^120.0.4",
     "@types/jasmine": "^5.1.7",
     "eslint": "^9.24.0",
