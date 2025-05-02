@@ -10,23 +10,11 @@ struct Gabber: ParsableCommand {
         abstract: "Repository 2 editor, at high BPM"
     )
 
-    @Option(help: "Shell environment file to source")
-    var env: String = "~/.shell/env.sh"
-
     @Option(help: "Editor to open the repository in")
     var editor: String = ProcessInfo.processInfo.environment["EDITOR"] ?? editorVar
 
     @Argument(help: "URL of the repository")
     var url: GitURL
-
-    private var sourcedEnv: String {
-        """
-        if [ -f /opt/homebrew/bin/brew ]; then
-            eval "$(/opt/homebrew/bin/brew shellenv)"
-        fi
-        source \(env)
-        """
-    }
 
     func run() throws {
         let editor = try resolveEditor()
@@ -65,7 +53,7 @@ struct Gabber: ParsableCommand {
 
     func resolveEditor() throws(GabberError) -> String {
         if editor == editorVar {
-            try shell(sourcedEnv + "\necho \(editor)")
+            try shell("echo \(editor)")
                 .trimmingCharacters(in: .whitespacesAndNewlines)
         } else {
             editor
@@ -73,7 +61,7 @@ struct Gabber: ParsableCommand {
     }
 
     func findPrograms(_ programs: [String]) throws(GabberError) -> [String: String] {
-        var script = sourcedEnv + "\n"
+        var script = ""
         var searchedPrograms: [String: String?] = [:]
         for program in programs {
             script += "printf '%s\n' \"$(which \(program))\"\n"
@@ -152,7 +140,6 @@ struct Gabber: ParsableCommand {
         do {
             neww = try shell(
                 """
-                \(sourcedEnv)
                 \(tmux) -L default new-window -Pd -n \(signal) -c \(dst) \
                     '\(editorCmd); \(tmux) wait -S \(signal)'
                 """

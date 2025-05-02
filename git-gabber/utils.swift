@@ -58,5 +58,5 @@ func cmd(_ cmd: String, _ args: [String]) throws(GabberError) -> String {
 
 @discardableResult
 func shell(_ command: String) throws(GabberError) -> String {
-    try cmd("/bin/sh", ["-c", command])
+    try cmd("/bin/zsh", ["-l", "-c", command])
 }
