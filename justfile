@@ -12,6 +12,9 @@ CI := env('GABBER_CI', 'false')
 swiftlint_reporter := if CI == 'true' { 'github-actions-logging' } else { 'emoji' }
 codesigning := if CI == 'true' { 'NO' } else { 'YES' }
 
+default:
+    @just --list
+
 _xcode config = 'Release' *args:
     xcodebuild \
         -project {{xcodeproj}} \
