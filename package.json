@@ -23,7 +23,7 @@
     "eslint-config-prettier": "^10.1.2",
     "globals": "^16.0.0",
     "jasmine-browser-runner": "^3.0.0",
-    "jasmine-core": "^5.7.0",
+    "jasmine-core": "^5.7.1",
     "prettier": "3.5.3",
     "web-ext": "^8.6.0"
   }
