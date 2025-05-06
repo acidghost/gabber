@@ -13,7 +13,3 @@ updates:
         patterns:
           - "@eslint*"
           - "eslint*"
-  - package-ecosystem: swift
-    directory: /
-    schedule:
-      interval: weekly
