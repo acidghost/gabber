@@ -14,7 +14,7 @@ jobs:
       - name: Setup build tools
         run: |
           brew install just
-          sudo xcode-select --switch /Applications/Xcode_16.2.app
+          sudo xcode-select --switch /Applications/Xcode_16.3.app
       - name: Build apps
         run: just build Release
 
@@ -30,7 +30,7 @@ jobs:
       - name: Setup build tools
         run: |
           brew install just
-          sudo xcode-select --switch /Applications/Xcode_16.2.app
+          sudo xcode-select --switch /Applications/Xcode_16.3.app
       - name: Setup npm dependencies
         run: |
           npm ci
@@ -49,7 +49,7 @@ jobs:
       - name: Setup build tools
         run: |
           brew install just
-          sudo xcode-select --switch /Applications/Xcode_16.2.app
+          sudo xcode-select --switch /Applications/Xcode_16.3.app
       - name: Setup npm dependencies
         run: |
           npm ci
