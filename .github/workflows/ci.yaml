@@ -6,7 +6,7 @@ on:
 
 jobs:
   build:
-    runs-on: macos-latest
+    runs-on: macos-15
     env:
       GABBER_CI: "true"
     steps:
@@ -14,12 +14,12 @@ jobs:
       - name: Setup build tools
         run: |
           brew install just
-          sudo xcode-select --switch /Applications/Xcode_16.2.app
+          sudo xcode-select --switch /Applications/Xcode_16.3.app
       - name: Build apps
         run: just build Release
 
   format:
-    runs-on: macos-latest
+    runs-on: macos-15
     env:
       GABBER_CI: "true"
     steps:
@@ -30,7 +30,7 @@ jobs:
       - name: Setup build tools
         run: |
           brew install just
-          sudo xcode-select --switch /Applications/Xcode_16.2.app
+          sudo xcode-select --switch /Applications/Xcode_16.3.app
       - name: Setup npm dependencies
         run: |
           npm ci
@@ -38,7 +38,7 @@ jobs:
         run: just check-format
 
   lint:
-    runs-on: macos-latest
+    runs-on: macos-15
     env:
       GABBER_CI: "true"
     steps:
@@ -49,7 +49,7 @@ jobs:
       - name: Setup build tools
         run: |
           brew install just
-          sudo xcode-select --switch /Applications/Xcode_16.2.app
+          sudo xcode-select --switch /Applications/Xcode_16.3.app
       - name: Setup npm dependencies
         run: |
           npm ci
@@ -57,7 +57,7 @@ jobs:
         run: just check-lint
 
   test:
-    runs-on: macos-latest
+    runs-on: macos-15
     env:
       GABBER_CI: "true"
     steps:

@@ -1,5 +1,17 @@
 import Foundation
 
+extension Bundle {
+    var appVersion: String {
+        if let shortVersion = infoDictionary?["CFBundleShortVersionString"] as? String {
+            if let buildNumber = infoDictionary?["CFBundleVersion"] as? String {
+                return "\(shortVersion) (\(buildNumber))"
+            }
+            return shortVersion
+        }
+        return "Unknown"
+    }
+}
+
 class TemporaryDirectory {
     private let url: URL
     let path: String
