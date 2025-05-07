@@ -7,7 +7,8 @@ let editorVar = "$EDITOR"
 struct Gabber: ParsableCommand {
     static let configuration = CommandConfiguration(
         commandName: "git-gabber",
-        abstract: "Repository 2 editor, at high BPM"
+        abstract: "Repository 2 editor, at high BPM",
+        version: Bundle.main.appVersion,
     )
 
     @Option(help: "Editor to open the repository in")
