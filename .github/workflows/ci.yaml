@@ -6,7 +6,7 @@ on:
 
 jobs:
   build:
-    runs-on: macos-latest
+    runs-on: macos-15
     env:
       GABBER_CI: "true"
     steps:
@@ -19,7 +19,7 @@ jobs:
         run: just build Release
 
   format:
-    runs-on: macos-latest
+    runs-on: macos-15
     env:
       GABBER_CI: "true"
     steps:
@@ -38,7 +38,7 @@ jobs:
         run: just check-format
 
   lint:
-    runs-on: macos-latest
+    runs-on: macos-15
     env:
       GABBER_CI: "true"
     steps:
@@ -57,7 +57,7 @@ jobs:
         run: just check-lint
 
   test:
-    runs-on: macos-latest
+    runs-on: macos-15
     env:
       GABBER_CI: "true"
     steps:
