@@ -68,7 +68,6 @@ jobs:
       - name: Setup build tools
         run: |
           brew install just
-          brew install --cask firefox@esr
       - name: Setup npm dependencies
         run: |
           npm ci
