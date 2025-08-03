@@ -5,6 +5,7 @@ bin := join(prefix, 'bin')
 out := 'Out'
 xcodeproj := 'gabber.xcodeproj'
 xcodescheme := 'gabber'
+xcconfig := 'project.xcconfig'
 xcderived := join('DerivedData', 'gabber')
 xcarchive := join(out, 'Gabber.xcarchive')
 
@@ -20,6 +21,7 @@ _xcode config = 'Release' *args:
         -project {{xcodeproj}} \
         -scheme {{xcodescheme}} \
         -configuration {{config}} \
+        -xcconfig {{xcconfig}} \
         -derivedDataPath {{xcderived}} \
         -skipPackagePluginValidation \
         -skipMacroValidation \
