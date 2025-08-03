@@ -20,6 +20,7 @@ _xcode config = 'Release' *args:
         -project {{xcodeproj}} \
         -scheme {{xcodescheme}} \
         -configuration {{config}} \
+        -xcconfig 'project.xcconfig' \
         -derivedDataPath {{xcderived}} \
         -skipPackagePluginValidation \
         -skipMacroValidation \
