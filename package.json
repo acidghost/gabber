@@ -9,9 +9,9 @@
     "npm": ">=10.9.0"
   },
   "scripts": {
-    "ext:build": "web-ext build --source-dir Extension --artifacts-dir Out --overwrite-dest",
-    "ext:run": "web-ext run --source-dir Extension --artifacts-dir Out --reload",
-    "ext:sign": "web-ext sign --source-dir Extension --artifacts-dir Out --api-key $FIREFOX_API_KEY --api-secret $FIREFOX_API_SECRET --channel unlisted",
+    "ext:build": "web-ext build --source-dir Extension/src --artifacts-dir Out --overwrite-dest",
+    "ext:run": "web-ext run --source-dir Extension/src --artifacts-dir Out --reload",
+    "ext:sign": "web-ext sign --source-dir Extension/src --artifacts-dir Out --api-key $FIREFOX_API_KEY --api-secret $FIREFOX_API_SECRET --channel unlisted",
     "lint": "eslint .",
     "test": "cd Extension && jasmine-browser-runner runSpecs"
   },
