@@ -56,7 +56,7 @@ just check
 - **JavaScript**: Use ESLint and Prettier (configured in project)
 - **Commits**: Use conventional commit messages
 
-### Code formatting
+### Code formatting and linting
 
 ```bash
 # Format Swift code
@@ -65,13 +65,16 @@ swift format --recursive gabber git-gabber
 # Format other files
 npx prettier --write .
 
+# Check formatting
+just check-format
+
 # Lint everything
 just check-lint
 ```
 
 ## Testing
 
-- Browser extension tests: `npm test`
+- Browser extension tests: `npm test` / `just test-extension`
 - Manual testing: Install locally built extension and app
 - Test with various GitHub URL formats
 
