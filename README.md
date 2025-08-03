@@ -1,10 +1,10 @@
 # Gabber
 
-[![License](https://img.shields.io/github/license/acidghost/gabber)](LICENSE)
 [![Release](https://img.shields.io/github/v/release/acidghost/gabber)](https://github.com/acidghost/gabber/releases)
 [![Build Status](https://img.shields.io/github/actions/workflow/status/acidghost/gabber/ci.yaml)](https://github.com/acidghost/gabber/actions)
+[![License](https://img.shields.io/github/license/acidghost/gabber)](LICENSE)
 
-**Repository to editor, at high BPM**
+> **:octocat: Repository to `$EDITOR`, at high BPM**
 
 ## Description
 
