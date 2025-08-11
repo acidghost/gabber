@@ -45,8 +45,10 @@ jobs:
           languages: ${{ matrix.language }}
           build-mode: ${{ matrix.build-mode }}
 
-      - if: matrix.build-mode == 'manual' && matrix.language == 'swift'
-        shell: bash
+      - name: Build apps
+        if: matrix.build-mode == 'manual' && matrix.language == 'swift'
+        env:
+          GABBER_CI: "true"
         run: |
           just build Release
 
