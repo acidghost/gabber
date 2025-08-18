@@ -27,8 +27,9 @@ jobs:
             build-mode: none
           - language: javascript-typescript
             build-mode: none
-          - language: swift
-            build-mode: manual
+          # NOTE: CodeQL for Swift is extremely slow
+          # - language: swift
+          #   build-mode: manual
 
     steps:
       - name: Checkout repository
