@@ -27,7 +27,7 @@ jobs:
             build-mode: none
           - language: javascript-typescript
             build-mode: none
-          # XXX: CodeQL for Swift is extremely slow
+          # NOTE: CodeQL for Swift is extremely slow
           # - language: swift
           #   build-mode: manual
 
