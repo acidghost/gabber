@@ -17,7 +17,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.34.0",
-    "@types/firefox-webext-browser": "^120.0.4",
+    "@types/firefox-webext-browser": "^120.0.5",
     "@types/jasmine": "^5.1.9",
     "eslint": "^9.34.0",
     "eslint-config-prettier": "^10.1.8",
