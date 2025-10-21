@@ -1,0 +1,67 @@
+name: CI for Swift
+
+on:
+  pull_request:
+    paths:
+      - .github/workflows/ci-swift.yaml
+      # NOTE: codeql for swift is disabled
+      # - .github/workflows/codeql.yaml
+      - gabber/**
+      - gabber.xcodeproj/**
+      - git-gabber/**
+      - .editorconfig
+      - .swift-format
+      - .swiftlint.yml
+      - justfile
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: macos-15
+    env:
+      GABBER_CI: "true"
+    steps:
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+        with:
+          persist-credentials: false
+      - name: Setup build tools
+        run: |
+          brew install just
+          sudo xcode-select --switch /Applications/Xcode_16.3.app
+      - name: Build
+        run: just build Release
+
+  format:
+    runs-on: macos-15
+    env:
+      GABBER_CI: "true"
+    steps:
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+        with:
+          persist-credentials: false
+      - name: Setup build tools
+        run: |
+          brew install just
+          sudo xcode-select --switch /Applications/Xcode_16.3.app
+      - name: Check formatting
+        run: just check-format-swift
+
+  lint:
+    runs-on: macos-15
+    env:
+      GABBER_CI: "true"
+    steps:
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+        with:
+          persist-credentials: false
+      - name: Setup build tools
+        run: |
+          brew install just
+          sudo xcode-select --switch /Applications/Xcode_16.3.app
+      - name: Check linting
+        run: just check-lint-xcode
