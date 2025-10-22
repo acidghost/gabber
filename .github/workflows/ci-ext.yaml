@@ -1,5 +1,18 @@
+name: CI for Web extension
+
 on:
-  pull_request: {}
+  pull_request:
+    paths:
+      - .github/workflows/ci-ext.yaml
+      - .github/workflows/codeql.yaml
+      - Extension/**
+      - .editorconfig
+      - .prettierignore
+      - .prettierrc.json
+      - eslint.config.mjs
+      - justfile
+      - package-lock.json
+      - package.json
   push:
     branches:
       - main
@@ -9,7 +22,7 @@ permissions:
 
 jobs:
   build:
-    runs-on: macos-15
+    runs-on: ubuntu-24.04
     env:
       GABBER_CI: "true"
     steps:
@@ -18,13 +31,17 @@ jobs:
           persist-credentials: false
       - name: Setup build tools
         run: |
+          eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+          echo "PATH=$PATH" >> $GITHUB_ENV
           brew install just
-          sudo xcode-select --switch /Applications/Xcode_16.3.app
-      - name: Build apps
-        run: just build Release
+      - name: Setup npm dependencies
+        run: |
+          npm ci
+      - name: Build
+        run: just extension
 
   format:
-    runs-on: macos-15
+    runs-on: ubuntu-24.04
     env:
       GABBER_CI: "true"
     steps:
@@ -36,16 +53,18 @@ jobs:
           node-version-file: package.json
       - name: Setup build tools
         run: |
+          eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+          echo "PATH=$PATH" >> $GITHUB_ENV
           brew install just
-          sudo xcode-select --switch /Applications/Xcode_16.3.app
       - name: Setup npm dependencies
         run: |
           npm ci
       - name: Check formatting
-        run: just check-format
+        # TODO: check format other should be run for everything except swift code
+        run: just check-format-other
 
   lint:
-    runs-on: macos-15
+    runs-on: ubuntu-24.04
     env:
       GABBER_CI: "true"
     steps:
@@ -57,16 +76,17 @@ jobs:
           node-version-file: package.json
       - name: Setup build tools
         run: |
+          eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+          echo "PATH=$PATH" >> $GITHUB_ENV
           brew install just
-          sudo xcode-select --switch /Applications/Xcode_16.3.app
       - name: Setup npm dependencies
         run: |
           npm ci
       - name: Check linting
-        run: just check-lint
+        run: just check-lint-npm
 
   test:
-    runs-on: macos-15
+    runs-on: ubuntu-24.04
     env:
       GABBER_CI: "true"
     steps:
@@ -78,6 +98,8 @@ jobs:
           node-version-file: package.json
       - name: Setup build tools
         run: |
+          eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+          echo "PATH=$PATH" >> $GITHUB_ENV
           brew install just
       - name: Setup npm dependencies
         run: |
