@@ -5,6 +5,7 @@ on:
     paths:
       - .github/workflows/ci-ext.yaml
       - .github/workflows/codeql.yaml
+      - .github/workflows/lcm.yaml
       - Extension/**
       - .editorconfig
       - .prettierignore
