@@ -21,7 +21,7 @@
     "@types/jasmine": "^5.1.13",
     "eslint": "^9.39.2",
     "eslint-config-prettier": "^10.1.8",
-    "globals": "^16.5.0",
+    "globals": "^17.0.0",
     "jasmine-browser-runner": "^3.0.0",
     "jasmine-core": "^5.13.0",
     "prettier": "3.7.4",
