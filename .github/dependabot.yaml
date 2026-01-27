@@ -15,5 +15,9 @@ updates:
         patterns:
           - "@eslint*"
           - "eslint*"
+      jasmine:
+        patterns:
+          - "@types/jasmine*"
+          - "jasmine*"
     cooldown:
       default-days: 7
