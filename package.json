@@ -25,6 +25,6 @@
     "jasmine-browser-runner": "^4.0.0",
     "jasmine-core": "^6.0.1",
     "prettier": "3.8.1",
-    "web-ext": "^9.2.0"
+    "web-ext": "^9.3.0"
   }
 }
