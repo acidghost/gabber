@@ -16,15 +16,15 @@
     "test": "cd Extension && jasmine-browser-runner runSpecs"
   },
   "devDependencies": {
-    "@eslint/js": "^9.39.2",
+    "@eslint/js": "^10.0.1",
     "@types/firefox-webext-browser": "^143.0.0",
     "@types/jasmine": "^6.0.0",
-    "eslint": "^9.39.2",
+    "eslint": "^10.0.0",
     "eslint-config-prettier": "^10.1.8",
     "globals": "^17.3.0",
     "jasmine-browser-runner": "^4.0.0",
-    "jasmine-core": "^6.0.1",
+    "jasmine-core": "^6.1.0",
     "prettier": "3.8.1",
-    "web-ext": "^9.2.0"
+    "web-ext": "^9.3.0"
   }
 }
