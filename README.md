@@ -1,8 +1,9 @@
 # Gabber
 
 [![Release](https://img.shields.io/github/v/release/acidghost/gabber)](https://github.com/acidghost/gabber/releases)
-[![Build Status](https://img.shields.io/github/actions/workflow/status/acidghost/gabber/ci.yaml)](https://github.com/acidghost/gabber/actions)
 [![License](https://img.shields.io/github/license/acidghost/gabber)](LICENSE)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/acidghost/gabber/ci-swift.yaml?label=swift)](https://github.com/acidghost/gabber/actions/workflows/ci-swift.yaml)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/acidghost/gabber/ci-ext.yaml?label=extension)](https://github.com/acidghost/gabber/actions/workflows/ci-ext.yaml)
 
 > **:octocat: Repository to `$EDITOR`, at high BPM**
 
