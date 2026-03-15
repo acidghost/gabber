@@ -39,7 +39,7 @@ check-lint: check-lint-xcode check-lint-npm
 
 # Check linting for XCode project
 check-lint-xcode: _deps-xcode
-    ./{{xcderived}}/SourcePackages/artifacts/swiftlintplugins/SwiftLintBinary/SwiftLintBinary.artifactbundle/swiftlint-*-macos/bin/swiftlint \
+    ./{{xcderived}}/SourcePackages/artifacts/swiftlintplugins/SwiftLintBinary/SwiftLintBinary.artifactbundle/macos/swiftlint \
         --strict \
         --reporter {{swiftlint_reporter}} \
         gabber git-gabber
