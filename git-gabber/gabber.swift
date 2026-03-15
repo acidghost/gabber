@@ -1,8 +1,6 @@
 import ArgumentParser
 import Foundation
 
-let editorVar = "$EDITOR"
-
 @main
 struct Gabber: ParsableCommand {
     static let configuration = CommandConfiguration(
@@ -14,6 +12,14 @@ struct Gabber: ParsableCommand {
     @Option(help: "Editor to open the repository in")
     var editor: String = ProcessInfo.processInfo.environment["EDITOR"] ?? editorVar
 
+    @Option(
+        help: ArgumentHelp(
+            "Open TUI editors in this terminal",
+            valueName: SupportedTerminal.allCases.map(\.rawValue).joined(separator: "|")
+        ),
+    )
+    var terminal: SupportedTerminal = .tmux
+
     @Argument(help: "URL of the repository")
     var url: GitURL
 
@@ -22,7 +28,12 @@ struct Gabber: ParsableCommand {
 
         var neededPrograms = ["git", editor]
         if editor != "code" {
-            neededPrograms.append("tmux")
+            switch terminal {
+            case .ghostty:
+                neededPrograms.append("osascript")
+            case .tmux:
+                neededPrograms.append("tmux")
+            }
         }
 
         let programs = try findPrograms(neededPrograms)
@@ -44,12 +55,10 @@ struct Gabber: ParsableCommand {
 
         if editor == "code" {
             try shell(editorCmd)
-        } else {
-            guard let tmux = programs["tmux"] else {
-                throw GabberError.programsNotFound(["tmux"])
-            }
-            try spawn(tmux: tmux, cmd: editorCmd, in: dst)
+            return
         }
+
+        try openTerm(editorCmd, in: dst, with: programs)
     }
 
     func resolveEditor() throws(GabberError) -> String {
@@ -133,7 +142,22 @@ struct Gabber: ParsableCommand {
         return cmd
     }
 
-    func spawn(tmux: String, cmd editorCmd: String, in dst: URL) throws {
+    func openTerm(_ editorCmd: String, in dst: URL, with programs: [String: String]) throws {
+        switch terminal {
+        case .ghostty:
+            guard let osa = programs["osascript"] else {
+                throw GabberError.programsNotFound(["osascript"])
+            }
+            try openTerm(osa: osa, ghosttyScript, cmd: editorCmd, in: dst)
+        case .tmux:
+            guard let tmux = programs["tmux"] else {
+                throw GabberError.programsNotFound(["tmux"])
+            }
+            try openTerm(tmux: tmux, cmd: editorCmd, in: dst)
+        }
+    }
+
+    func openTerm(tmux: String, cmd editorCmd: String, in dst: URL) throws {
         // TODO: make this unique to avoid strange race conditions in tmux
         let signal = "gabber-\(url.repository)"
 
@@ -158,4 +182,33 @@ struct Gabber: ParsableCommand {
             throw GabberError.wrapped("waiting for editor to exit", error)
         }
     }
+
+    func openTerm(osa: String, _ script: String, cmd editorCmd: String, in dst: URL) throws {
+        try cmd(osa, ["-e", script, editorCmd, dst.absoluteString])
+        print("\(url.url) cloned to new terminal window")
+    }
 }
+
+extension SupportedTerminal: ExpressibleByArgument {}
+
+private let editorVar = "$EDITOR"
+
+private let ghosttyScript = """
+    on run argv
+        set editorCmd to item 1 of argv
+        set cwd to item 2 of argv
+        tell application "Ghostty"
+            set conf to new surface configuration
+            set initial working directory of conf to cwd
+            set win to new window with configuration conf
+            tell terminal 1 of win
+                input text editorCmd to it
+                send key "enter" to it
+            end tell
+            -- wait for window to exit
+            repeat while exists win
+                delay 0.5
+            end repeat
+        end tell
+    end run
+    """

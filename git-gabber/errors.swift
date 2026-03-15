@@ -1,6 +1,7 @@
 import Foundation
 
 enum GabberError: LocalizedError {
+    case resourcesNotFound([String])
     case programsNotFound([String])
     case cmdRun(Error)
     case cmd(String, Int32)
@@ -9,12 +10,10 @@ enum GabberError: LocalizedError {
 
     var errorDescription: String? {
         switch self {
+        case .resourcesNotFound(let resources):
+            return notFound(resources, named: "resource")
         case .programsNotFound(let programs):
-            if programs.count == 1 {
-                return "program '\(programs[0])' not found"
-            } else {
-                return "programs '\(programs.joined(separator: "', '"))' not found"
-            }
+            return notFound(programs, named: "program")
         case .cmdRun(let err):
             return "failed to execute command: \(err.localizedDescription)"
         case .cmd(let out, let code):
@@ -24,5 +23,13 @@ enum GabberError: LocalizedError {
         case .wrapped(let msg, let err):
             return "\(msg): \(err.localizedDescription)"
         }
+    }
+
+    private func notFound(_ items: [String], named: String, pluralizedAs: String? = nil) -> String {
+        let plural = pluralizedAs ?? named + "s"
+        if items.count == 1 {
+            return "\(named) '\(items[0])' not found"
+        }
+        return "\(plural) '\(items.joined(separator: "', '"))' not found"
     }
 }
