@@ -60,6 +60,20 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		8F2C4C2A2F66F7A90047DDD2 /* Exceptions for "gabber-common" folder in "git-gabber" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				common.swift,
+			);
+			target = 8FBD84422D85765D00B2492F /* git-gabber */;
+		};
+		8F2C4C2B2F66F7A90047DDD2 /* Exceptions for "gabber-common" folder in "gabber" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				common.swift,
+			);
+			target = 8F48D8062D857A22000BBDFE /* gabber */;
+		};
 		8F6D97E42D85FEBB0086375D /* Exceptions for "gabber" folder in "gabber" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -70,6 +84,15 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		8F2C4C172F66F4180047DDD2 /* gabber-common */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				8F2C4C2A2F66F7A90047DDD2 /* Exceptions for "gabber-common" folder in "git-gabber" target */,
+				8F2C4C2B2F66F7A90047DDD2 /* Exceptions for "gabber-common" folder in "gabber" target */,
+			);
+			path = "gabber-common";
+			sourceTree = "<group>";
+		};
 		8F48D8082D857A22000BBDFE /* gabber */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
@@ -155,22 +178,23 @@
 		8FBD843A2D85765D00B2492F = {
 			isa = PBXGroup;
 			children = (
-				8F9526182DCC197C003E9AF6 /* project.xcconfig */,
 				8F48B53F2D85776F000BBDFE /* .editorconfig */,
 				8F48B5402D85776F000BBDFE /* .gitignore */,
 				8F2F74192D9012AD00C325F6 /* .swift-format */,
-				8FBD84542D85769500B2492F /* justfile */,
-				8FBCB87D2D999BB1005884B5 /* LICENSE */,
-				8FBD84562D85769500B2492F /* package-lock.json */,
-				8FBD84552D85769500B2492F /* package.json */,
-				8FBD84572D85769500B2492F /* README.md */,
-				8FBCB87C2D999BB1005884B5 /* eslint.config.mjs */,
 				8F2F74182D900E3F00C325F6 /* .swiftlint.yml */,
+				8FBCB87C2D999BB1005884B5 /* eslint.config.mjs */,
 				8FBCB87B2D999B9B005884B5 /* Extension */,
 				8F6D97D92D858C400086375D /* Frameworks */,
 				8F48D8082D857A22000BBDFE /* gabber */,
+				8F2C4C172F66F4180047DDD2 /* gabber-common */,
 				8FBD84452D85765D00B2492F /* git-gabber */,
+				8FBD84542D85769500B2492F /* justfile */,
+				8FBCB87D2D999BB1005884B5 /* LICENSE */,
+				8FBD84552D85769500B2492F /* package.json */,
+				8FBD84562D85769500B2492F /* package-lock.json */,
 				8FBD84442D85765D00B2492F /* Products */,
+				8F9526182DCC197C003E9AF6 /* project.xcconfig */,
+				8FBD84572D85769500B2492F /* README.md */,
 			);
 			sourceTree = "<group>";
 		};

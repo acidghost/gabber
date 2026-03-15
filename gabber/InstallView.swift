@@ -32,6 +32,13 @@ struct InstallView: View {
                 showInstallAlert = true
             }
             .buttonStyle(.borderedProminent)
+            HStack(spacing: 4) {
+                Image(systemName: "info.circle")
+                Text("Installing the CLI is optional")
+            }
+            .foregroundStyle(.gray)
+            .imageScale(.small)
+            .textScale(.secondary)
         }
         .frame(maxWidth: 340)
         .alert(

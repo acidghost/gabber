@@ -78,9 +78,14 @@ class CLI {
             throw CLIError.invalidURL(gabberURL)
         }
 
+        let terminal =
+            if let raw = UserDefaults.standard.string(forKey: "terminal") {
+                SupportedTerminal(rawValue: raw)!
+            } else { SupportedTerminal.tmux }
+
         task.standardOutput = pipe
         task.standardError = pipe
-        task.arguments = [repoURL.absoluteString]
+        task.arguments = ["--terminal", terminal.rawValue, repoURL.absoluteString]
         task.executableURL = bundledURL
         task.standardInput = nil
 

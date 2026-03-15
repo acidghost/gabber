@@ -2,11 +2,21 @@ import SwiftUI
 
 struct SettingsView: View {
     @EnvironmentObject var cliService: CLIService
+    @AppStorage("terminal") private var terminal: SupportedTerminal = .ghostty
 
     var body: some View {
         VStack(spacing: 20) {
             AboutView()
             Spacer()
+            Picker(
+                "Open **TUI editors** in",
+                systemImage: "apple.terminal.on.rectangle",
+                selection: $terminal,
+            ) {
+                ForEach(SupportedTerminal.allCases) { terminal in
+                    Text(terminal.rawValue.capitalized).tag(terminal)
+                }
+            }
             if let cli = cliService.cli {
                 InstallView(cli: cli)
             } else if let err = cliService.error {
