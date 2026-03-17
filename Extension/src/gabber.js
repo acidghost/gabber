@@ -63,3 +63,17 @@ export function isOnRepo(url) {
 export function asGabber(url) {
   return url.replace(/^https?/, "gabber");
 }
+
+/**
+ * Open given tab's URL as a gabber:// URL.
+ * @param {browser.tabs.Tab} tab
+ */
+export async function openInGabber(tab) {
+  await window.browser.tabs.create({
+    url: asGabber(tab.url),
+    openerTabId: tab.id,
+    active: true,
+  });
+}
+
+export const DISPLAY_PREFERENCE = "displayPreference";

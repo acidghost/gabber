@@ -9,7 +9,9 @@
     "192": "icons/gabber-192.png"
   },
   "permissions": [
-    "tabs"
+    "tabs",
+    "contextMenus",
+    "storage"
   ],
   "background": {
     "scripts": [
@@ -30,6 +32,10 @@
       },
       "description": "Opens the extension"
     }
+  },
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": false
   },
   "browser_specific_settings": {
     "gecko": {

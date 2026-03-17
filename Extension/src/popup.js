@@ -1,4 +1,4 @@
-import { asGabber } from "./gabber.js";
+import { asGabber, openInGabber } from "./gabber.js";
 
 const popup = document.getElementById("popup-content");
 popup.innerHTML = "";
@@ -13,4 +13,4 @@ a.href = asGabber(tab.url);
 a.innerText = tab.url;
 popup.appendChild(a);
 
-window.browser.tabs.create({ url: a.href, openerTabId: tab.id });
+await openInGabber(tab);
