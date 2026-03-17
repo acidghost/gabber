@@ -77,3 +77,4 @@ export async function openInGabber(tab) {
 }
 
 export const DISPLAY_PREFERENCE = "displayPreference";
+export const ICON_PREFERENCE = "iconPreference";

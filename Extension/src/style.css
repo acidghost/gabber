@@ -13,18 +13,38 @@ body {
   background-color: light-dark(#eee, #1c1b22);
   color: light-dark(#000, #fff);
 }
+
 h1 {
   font-size: 18px;
   margin-bottom: 20px;
 }
+
 .option {
   margin-bottom: 12px;
 }
+
 label {
   display: flex;
   align-items: center;
   cursor: pointer;
 }
+
 input[type="radio"] {
   margin-right: 10px;
+}
+
+.icon-option {
+  margin-bottom: 12px;
+}
+
+.icon-option label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.icon-preview {
+  max-width: 28px;
+  object-fit: contain;
 }
