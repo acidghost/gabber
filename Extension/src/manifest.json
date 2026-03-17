@@ -4,6 +4,10 @@
   "name": "Gabber",
   "version": "2.0.0",
   "description": "Open repository in your editor, at high BPM",
+  "icons": {
+    "48": "icons/gabber-48.png",
+    "192": "icons/gabber-192.png"
+  },
   "permissions": [
     "tabs"
   ],
@@ -16,7 +20,7 @@
   "page_action": {
     "default_title": "Gabber",
     "default_popup": "popup.html",
-    "default_icon": "editor.svg"
+    "default_icon": "icons/gabber-48.png"
   },
   "commands": {
     "_execute_page_action": {
